@@ -229,8 +229,8 @@ def run(tmp_train_raw, test_raw, bert_model, lr, runs=1, n_epochs=200, clip=5, p
         intent_acc.append(intent_test['accuracy'])
         slot_f1s.append(results_test['total']['f'])
 
-        print(f"Intent Acc: {intent_test['accuracy']:.3f} Slot F1: {results_test['total']['f']:.3f}")
-        wandb.log({"Slot F1": results_test['total']['f'], "Intent Acc": intent_test['accuracy']})
+        #print(f"Intent Acc: {intent_test['accuracy']:.3f} Slot F1: {results_test['total']['f']:.3f}")
+        #wandb.log({"Slot F1": results_test['total']['f'], "Intent Acc": intent_test['accuracy']})
 
         if results_test['total']['f'] > best_f1_runs:
             best_f1_runs = results_test['total']['f']
@@ -245,7 +245,7 @@ def run(tmp_train_raw, test_raw, bert_model, lr, runs=1, n_epochs=200, clip=5, p
     slot_f1s = np.asarray(slot_f1s)
     intent_acc = np.asarray(intent_acc)
 
-    wandb.log({"Slot F1": round(slot_f1s.mean(),3), "Intent Acc": round(intent_acc.mean(), 3)})
+    #wandb.log({"Slot F1": round(slot_f1s.mean(),3), "Intent Acc": round(intent_acc.mean(), 3)})
     print('Slot F1', round(slot_f1s.mean(),3), '+-', round(slot_f1s.std(),3))
     print('Intent Acc', round(intent_acc.mean(), 3), '+-', round(slot_f1s.std(), 3))
     

@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/home/disi/NLU-exam-main/NLU/part_1/main.py", line 75, in <module>
-    main()
-  File "/home/disi/NLU-exam-main/NLU/part_1/main.py", line 69, in main
-    run(tmp_train_raw, test_raw, bert_model=bert_model, lr=lr, runs=runs, n_epochs=n_epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, bidirectionality=bidirectionality, dropout_layer=dropout_layer)
-  File "/home/disi/NLU-exam-main/NLU/part_1/functions.py", line 167, in run
-    train_raw, dev_raw, test_raw = create_dev_set(tmp_train_raw, test_raw, portion = 0.10)
-ValueError: not enough values to unpack (expected 3, got 2)
