@@ -21,38 +21,10 @@ clip = 5
 patience = 5
 device = 'cuda:0'
 
-bidirectionality = False # Adding bidirectionality
-dropout_layer = False    # Adding dropout layer
-
-# wandb
-# start a new wandb run to track this script
-wandb.init(
-    # set the wandb project where this run will be logged
-    project="NLU-1",
-
-    # track hyperparameters and run metadata
-    config={
-        "bert_model": bert_model,
-        "lr": lr,
-        "runs": runs,
-        "n_epochs": n_epochs,
-        "clip": clip,
-        "patience": patience,
-        "bidirectionality" : bidirectionality,
-        "dropout_layer" : dropout_layer,
-        "device": device,
-        "architecture": "bert",
-        "batch_size": 32,
-        "dataset": "ATIS",
-        "optimizer": "AdamW",
-        "loss_slots": "CrossEntropyLoss",
-        "loss_intents": "CrossEntropyLoss"
-    }
-)
-
-
 
 def main():
+    bidirectionality = False # Adding bidirectionality
+    dropout_layer = False    # Adding dropout layer
     parser = argparse.ArgumentParser(description="Intent and Slot Filling Task")
     parser.add_argument('--bid', action='store_true', help='Optional flag to add bidirectionality')
     parser.add_argument('--drop', action='store_true', help='Optional flag to add dropout layer')
@@ -62,6 +34,32 @@ def main():
         bidirectionality = True
     if args.drop:
         dropout_layer = True
+        
+    # wandb
+    # start a new wandb run to track this script
+    wandb.init(
+        # set the wandb project where this run will be logged
+        project="NLU-1",
+
+        # track hyperparameters and run metadata
+        config={
+            "bert_model": bert_model,
+            "lr": lr,
+            "runs": runs,
+            "n_epochs": n_epochs,
+            "clip": clip,
+            "patience": patience,
+            "bidirectionality" : bidirectionality,
+            "dropout_layer" : dropout_layer,
+            "device": device,
+            "architecture": "bert",
+            "batch_size": 32,
+            "dataset": "ATIS",
+            "optimizer": "AdamW",
+            "loss_slots": "CrossEntropyLoss",
+            "loss_intents": "CrossEntropyLoss"
+        }
+    )
     
     # Load the datasets
     tmp_train_raw = load_data(os.path.join('dataset','train.json'))

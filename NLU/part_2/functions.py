@@ -174,6 +174,9 @@ def run(tmp_train_raw, test_raw, bert_model, lr, runs=1, n_epochs=200, clip=5, p
     
     lang = Lang(intents, slots, tokenizer.pad_token_id)
     
+    train_dataset, dev_dataset, test_dataset = create_dataset(train_raw, dev_raw, test_raw, tokenizer, lang)
+    train_loader, dev_loader, test_loader = create_dataloader(train_dataset, dev_dataset, test_dataset, lang)
+    
     criterion_slots = nn.CrossEntropyLoss(ignore_index=lang.pad_token_id)
     criterion_intents = nn.CrossEntropyLoss()
     # end preprocess

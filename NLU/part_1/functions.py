@@ -172,7 +172,7 @@ def run(tmp_train_raw, test_raw, bert_model, lr, runs=1, n_epochs=200, clip=5, p
     criterion_slots = nn.CrossEntropyLoss(ignore_index=PAD_TOKEN)
     criterion_intents = nn.CrossEntropyLoss()
     
-    train_dataset, dev_dataset, test_dataset = create_dataset(train_raw, dev_raw, test_raw, tokenizer, lang)
+    train_dataset, dev_dataset, test_dataset = create_dataset(train_raw, dev_raw, test_raw, lang)
     train_loader, dev_loader, test_loader = create_dataloader(train_dataset, dev_dataset, test_dataset, lang, batch_size=32)
     # end preprocess
     
@@ -186,7 +186,7 @@ def run(tmp_train_raw, test_raw, bert_model, lr, runs=1, n_epochs=200, clip=5, p
     
     # start the runs
     for x in tqdm(range(0, runs)):
-        model = ModelIAS(hid_size, out_slot, out_int, vocab_len, bidirectionality, dropout_layer) #TODO
+        model = ModelIAS(hid_size, out_slot, out_int, emb_size, vocab_len, bidirectionality, dropout_layer).to(device)
         
         optimizer = optim.AdamW(model.parameters(), lr=lr)
         

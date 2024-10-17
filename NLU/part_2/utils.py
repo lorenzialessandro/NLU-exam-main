@@ -264,7 +264,7 @@ def create_dataset(train_raw, dev_raw, test_raw, tokenizer, lang):
   return train_dataset, dev_dataset, test_dataset
   
 # Create dataloader
-def create_dataloader(train_dataset, dev_dataset, test_dataset, batch_size=32):
+def create_dataloader(train_dataset, dev_dataset, test_dataset, lang, batch_size=32):
   collate_fn_with_lang = partial(collate_fn, lang=lang)
   train_loader = DataLoader(train_dataset, batch_size=batch_size, collate_fn=collate_fn_with_lang, shuffle=True)
   dev_loader = DataLoader(dev_dataset, batch_size=batch_size, collate_fn=collate_fn_with_lang)

@@ -1,0 +1,26 @@
+  0%|                                                                                                                                           | 0/99 [00:00<?, ?it/s]
+  0%|                                                                                                                                            | 0/1 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/disi/NLU-exam-main/NLU/part_1/main.py", line 75, in <module>
+    main()
+  File "/home/disi/NLU-exam-main/NLU/part_1/main.py", line 69, in main
+    run(tmp_train_raw, test_raw, bert_model=bert_model, lr=lr, runs=runs, n_epochs=n_epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, bidirectionality=bidirectionality, dropout_layer=dropout_layer)
+  File "/home/disi/NLU-exam-main/NLU/part_1/functions.py", line 201, in run
+    loss = train_loop(train_loader, optimizer, model, criterion_intents=criterion_intents, criterion_slots=criterion_slots,  clip=clip, lang=lang)
+  File "/home/disi/NLU-exam-main/NLU/part_1/functions.py", line 43, in train_loop
+    slots, intent = model(sample['utterances'], sample['slots_len'])
+  File "/home/disi/anaconda3/envs/nlu24/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/disi/anaconda3/envs/nlu24/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/disi/NLU-exam-main/NLU/part_1/model.py", line 54, in forward
+    utt_emb = self.embedding(utterance) # utt_emb.size() = batch_size X seq_len X emb_size
+  File "/home/disi/anaconda3/envs/nlu24/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/disi/anaconda3/envs/nlu24/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/disi/anaconda3/envs/nlu24/lib/python3.10/site-packages/torch/nn/modules/sparse.py", line 163, in forward
+    return F.embedding(
+  File "/home/disi/anaconda3/envs/nlu24/lib/python3.10/site-packages/torch/nn/functional.py", line 2237, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)

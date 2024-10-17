@@ -14,6 +14,7 @@ import os
 import json
 
 device = 'cuda:0' # cuda:0 means we are using the GPU with id 0, if you have multiple GPU
+PAD_TOKEN = 0
 
 # load the data
 def load_data(path):
@@ -52,7 +53,7 @@ def create_dev_set(tmp_train_raw, test_raw, portion=0.10):
 
     y_test = [x['intent'] for x in test_raw]
 
-    return train_raw, dev_raw
+    return train_raw, dev_raw, test_raw
 
 # Preprocess the dataset
 def preprocess_dataset(train_raw, dev_raw, test_raw):
@@ -67,7 +68,7 @@ def preprocess_dataset(train_raw, dev_raw, test_raw):
         words: list of words
         slots: set of slots
         intents: set of intents
-    ''':
+    '''
     words = sum([x['utterance'].split() for x in train_raw], []) # No set() since we want to compute 
                                                             # the cutoff
     corpus = train_raw + dev_raw + test_raw # We do not wat unk labels, 
@@ -216,7 +217,7 @@ def create_dataset(train_raw, dev_raw, test_raw, lang):
     return train_dataset, dev_dataset, test_dataset
 
 # Create dataloader
-def create_dataloader(train_dataset, dev_dataset, test_dataset, lang, batch_size=32)
+def create_dataloader(train_dataset, dev_dataset, test_dataset, lang, batch_size=32):
     train_loader = DataLoader(train_dataset, batch_size=batch_size, collate_fn=collate_fn,  shuffle=True)
     dev_loader = DataLoader(dev_dataset, batch_size=batch_size, collate_fn=collate_fn)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, collate_fn=collate_fn)
