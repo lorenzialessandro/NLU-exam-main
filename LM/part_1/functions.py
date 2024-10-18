@@ -50,14 +50,14 @@ def train_loop(data, optimizer, model, lang, criterion, clip=5):
     return sum(loss_array)/sum(number_of_tokens)
 
 # Evaluation loop
-def eval_loop(data, model, lang, criterion):
+def eval_loop(data, model, lang, eval_criterion):
     '''Evaluation loop for the model
     
     Args:
         data: data loader for the evaluation data
         model: model to evaluate
         lang: lang class with the vocabulary     
-        criterion: loss function
+        eval_criterion: loss function
     
     Returns:
         ppl: perplexity of the model
@@ -102,15 +102,16 @@ def init_weights(mat):
                     
                     
 # Running the training and evaluation loops             
-def run(tmp_train_raw, test_raw, lr, runs=1, n_epoch=200, clip=5, patience=5, device='cuda:0', hid_size=200, emb_size=300, model_type='LSTM', optimizer_type='SGD', use_dropout=False):
+def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5, device='cuda:0', hid_size=200, emb_size=300, model_type='LSTM', optimizer_type='SGD', use_dropout=False):
     '''Running function : preprocess, train and evaluate the model
     
     Args:
-        tmp_train_raw: training data
+        train_raw: training data
+        dev_raw: dev data
         test_raw: test data
         lr: learning rate
         runs: number of runs
-        n_epoch: number of epochs
+        epochs: number of epochs
         clip: gradient clipping (default is 5)
         patience: patience for early stopping
         device: device to use (default is cuda:0)
@@ -173,12 +174,12 @@ def run(tmp_train_raw, test_raw, lr, runs=1, n_epoch=200, clip=5, patience=5, de
         pbar = tqdm(range(1,epochs))
         
         for epoch in pbar:
-            loss = train_loop(train_loader, optimizer, model, lang, criterion_train clip=5)
+            loss = train_loop(train_loader, optimizer, model, lang, criterion_train, clip=5)
             if epoch % 1 == 0: # We check the performance every 1 epoch
                 sampled_epochs.append(epoch)
                 losses_train.append(np.asarray(loss).mean())
                 
-                ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
+                ppl_dev, loss_dev = eval_loop(dev_loader, model, lang, criterion_eval)
                 losses_dev.append(np.asarray(loss_dev).mean())
                 pbar.set_description("PPL: %f" % ppl_dev)
 
@@ -225,6 +226,10 @@ def run(tmp_train_raw, test_raw, lr, runs=1, n_epoch=200, clip=5, patience=5, de
     
     wandb.log({"PPL": round(ppls.mean(),3)})
     print('PPL', round(ppls.mean(),3), '+-', round(ppls.std(),3))
+    
+    # Save the model
+    #path = 'model_bin/LMModel.pt'
+    #torch.save(best_model.state_dict(), path)
 
 
 

@@ -1,0 +1,12 @@
+  0%|                                                                                                                                          | 0/1 [00:00<?, ?it/s]
+  0%|                                                                                                                                          | 0/1 [00:11<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/disi/NLU-exam-main/LM/part_1/main.py", line 70, in <module>
+    main()
+  File "/home/disi/NLU-exam-main/LM/part_1/main.py", line 64, in main
+    run(train_raw, dev_raw, test_raw, lr=lr, runs=runs, epochs=epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, model_type=model, optimizer_type=optimizer, use_dropout=use_dropout)
+  File "/home/disi/NLU-exam-main/LM/part_1/functions.py", line 182, in run
+    ppl_dev, loss_dev = eval_loop(dev_loader, model, lang, criterion_eval)
+  File "/home/disi/NLU-exam-main/LM/part_1/functions.py", line 73, in eval_loop
+    loss = eval_criterion(output, sample['target'])
+NameError: name 'eval_criterion' is not defined

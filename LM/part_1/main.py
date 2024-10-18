@@ -2,15 +2,15 @@
 # Please write your fuctions or classes in the functions.py
 
 from functions import * # Import everything from functions.py file
-from utils import load_data
+from utils import read_file
 import argparse
 
 # define parameters
-lr = 0
-runs = 5
+lr = 2
+runs = 1
 hid_size = 200    # size of hidden layer
 emb_size = 300    # size of embedding layer
-n_epochs = 100
+epochs = 100
 clip = 5
 patience = 3
 device = 'cuda:0'
@@ -45,7 +45,7 @@ def main():
             "runs": runs,
             "hid_size": hid_size,
             "emb_size": emb_size,
-            "n_epochs": n_epochs,
+            "epochs": epochs,
             "clip": clip,
             "patience": patience,
             "device": device,
@@ -61,7 +61,7 @@ def main():
     )
     
     # Lunch the run(s) with the parameters
-    run(train_raw, dev_raw, test_raw, lr=lr, runs=runs, n_epochs=n_epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, model_type=model, optimizer_type=optimizer, use_dropout=use_dropout)
+    run(train_raw, dev_raw, test_raw, lr=lr, runs=runs, epochs=epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, model_type=model, optimizer_type=optimizer, use_dropout=use_dropout)
 
 if __name__ == "__main__":
     #Wrtite the code to load the datasets and to run your functions

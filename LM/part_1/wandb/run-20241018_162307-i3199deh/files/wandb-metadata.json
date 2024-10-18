@@ -1,0 +1,81 @@
+{
+    "os": "Linux-5.15.0-1064-azure-x86_64-with-glibc2.31",
+    "python": "3.10.13",
+    "heartbeatAt": "2024-10-18T16:23:07.967306",
+    "startedAt": "2024-10-18T16:23:07.451483",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "RNN",
+        "SGD"
+    ],
+    "state": "running",
+    "program": "/home/disi/NLU-exam-main/LM/part_1/main.py",
+    "codePathLocal": "main.py",
+    "codePath": "LM/part_1/main.py",
+    "git": {
+        "remote": "https://github.com/lorenzialessandro/NLU-exam-main",
+        "commit": "1ffa69438c622341fae7044288048bcbfab0e9c2"
+    },
+    "email": null,
+    "root": "/home/disi/NLU-exam-main",
+    "host": "labDIIWIS",
+    "username": "disi",
+    "executable": "/home/disi/anaconda3/envs/nlu24/bin/python3",
+    "cpu_count": 6,
+    "cpu_count_logical": 6,
+    "cpu_freq": {
+        "current": 2593.992,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2593.992,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.992,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.992,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.992,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.992,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.992,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 123.86906433105469,
+            "used": 27.15152359008789
+        }
+    },
+    "gpu": "Tesla V100-PCIE-16GB",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "Tesla V100-PCIE-16GB",
+            "memory_total": 17179869184
+        }
+    ],
+    "memory": {
+        "total": 110.04589462280273
+    }
+}
