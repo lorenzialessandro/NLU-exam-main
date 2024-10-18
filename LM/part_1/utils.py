@@ -167,33 +167,3 @@ def create_dataloader(train_dataset, dev_dataset, test_dataset, lang, batch_size
   dev_loader = DataLoader(dev_dataset, batch_size=batch_size, collate_fn=collate_fn_with_lang)
   test_loader = DataLoader(test_dataset, batch_size=batch_size, collate_fn=collate_fn_with_lang)
   return train_loader, dev_loader, test_loader
-
-    
-
-# =============== =============== ===============
-
-def preprocess_and_load_data():
-    # =============== Reading and Loading Data ===============
-    train_raw = read_file("dataset/ptb.train.txt")
-    dev_raw = read_file("dataset/ptb.valid.txt")
-    test_raw = read_file("dataset/ptb.test.txt")
-
-
-    # =============== Vocabulary Preparation ===============
-    # Vocab is computed only on training set
-    # We add two special tokens end of sentence and padding
-    vocab = get_vocab(train_raw, ["<pad>", "<eos>"])
-    lang = Lang(train_raw, ["<pad>", "<eos>"])
-
-    # =============== Dataset Preparation ===============
-    train_dataset = PennTreeBank(train_raw, lang)
-    dev_dataset = PennTreeBank(dev_raw, lang)
-    test_dataset = PennTreeBank(test_raw, lang)
-
-    # =============== Dataloader instantiation ===============
-    # 256, 1024, 1024
-    train_loader = DataLoader(train_dataset, batch_size=256, collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"]),  shuffle=True)
-    dev_loader = DataLoader(dev_dataset, batch_size=1024, collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"]))
-    test_loader = DataLoader(test_dataset, batch_size=1024, collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"]))
-
-    return train_loader, dev_loader, test_loader, lang

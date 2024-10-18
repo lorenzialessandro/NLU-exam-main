@@ -1,90 +1,67 @@
 # This file is used to run your functions and print the results
 # Please write your fuctions or classes in the functions.py
 
-# Import everything from functions.py file
-from functions import *
-from model import *
-from utils import *
-import sys
+from functions import * # Import everything from functions.py file
+from utils import load_data
+import argparse
 
 # define parameters
-device = 'cuda:0'
+lr = 0
+runs = 5
 hid_size = 200    # size of hidden layer
 emb_size = 300    # size of embedding layer
 n_epochs = 100
+clip = 5
 patience = 3
+device = 'cuda:0'
+
+import wandb
+import math
+import random
+wandb.login(key="b538d8603f23f0c22e0518a7fcef14eef2620e7d")
 
 def main():
+    use_dropout = False # Adding dropout layer
+    parser = argparse.ArgumentParser(description="Language Modeling Task")
+    parser.add_argument('architecture', choices=['RNN', 'LSTM'], help="Choose the model architecture (RNN or LSTM)")
+    parser.add_argument('optimizer', choices=['SGD', 'AdamW'], help="Choose the optimizer (SGD or AdamW)")
+    parser.add_argument('--dropout', action='store_true', help="Include dropout in the model")
+    args = parser.parse_args()
     
-    # Preprocess and load data
-    train_loader, dev_loader, test_loader, lang = preprocess_and_load_data()
-    vocab_len = len(lang.word2id)
-
-    if len(sys.argv) < 3:
-        print("Usage: python3 main.py <model> <optimizer>")
-        return
-
-    model = sys.argv[1]
-    optimizer = sys.argv[2]
-    lr = 0.01 # default
-
-    # RNN with SGD
-    # LSTM with SGD
-    # LM_LSTM_dropout with SGD
-    # LM_LSTM_dropout with AdamW
-
-    if model == "RNN":
-        if optimizer == "SGD":
-            lr = 1.5
-            model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
-            optimizer = optim.SGD(model.parameters(), lr=lr)
-        else:
-            print("RNN can be used only with SGD")
-            return
-    elif model == "LSTM":
-        if optimizer == "SGD":
-            lr = 1.5
-            model = LM_LSTM(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
-            optimizer = optim.SGD(model.parameters(), lr=lr)
-        else:
-            print("LSTM can be used only with SGD")
-            return
-    elif model == "LSTM_dropout":
-        if optimizer == "SGD":
-            lr = 1.3
-            model = LM_LSTM_dropout(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
-            optimizer = optim.SGD(model.parameters(), lr=lr)
-        elif optimizer == "AdamW":
-            lr = 0.001
-            model = LM_LSTM_dropout(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
-            optimizer = optim.AdamW(model.parameters(), lr=lr)
-        else:
-            print("LSTM_dropout can be used only with SGD and AdamW")
-            return 
-    else: 
-        print("Usage: python3 main.py <model> <optimizer>")
-        return
-
-
-
+    model = args.architecture
+    optimizer = args.optimizer
+    if args.dropout:
+        use_dropout = True
     
-    model.apply(init_weights)
-    criterion_train = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"])
-    criterion_eval = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"], reduction='sum')   
+    # Load the datasets
+    train_raw = read_file("dataset/ptb.train.txt")
+    dev_raw = read_file("dataset/ptb.valid.txt")
+    test_raw = read_file("dataset/ptb.test.txt")
     
-    # Train and evaluate the model
-    result = train_and_evaluate(train_loader, dev_loader, test_loader, optimizer, criterion_train, criterion_eval, model, device, n_epochs, patience, lr)
-    
-    print(result)
-    
-    # path = 'model_bin/LSTM_dropout(AdamW).pt'
-    # torch.save(model.state_dict(), path)
-    # To load the model you need to initialize it
-    # model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
-    # Then you load it
-    # model.load_state_dict(torch.load(path))
-        
+    wandb.init(
+        project="LM",
+        config={
+            "lr": lr,
+            "runs": runs,
+            "hid_size": hid_size,
+            "emb_size": emb_size,
+            "n_epochs": n_epochs,
+            "clip": clip,
+            "patience": patience,
+            "device": device,
+            "model": model,
+            "optimizer": optimizer,
+            "use_dropout": use_dropout,
+            "loss": "CrossEntropyLoss",
+            "metric": "Perplexity",
+            "dataset": "PTB",
+            "batch_size": 256,
+        }
 
+    )
+    
+    # Lunch the run(s) with the parameters
+    run(train_raw, dev_raw, test_raw, lr=lr, runs=runs, n_epochs=n_epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, model_type=model, optimizer_type=optimizer, use_dropout=use_dropout)
 
 if __name__ == "__main__":
     #Wrtite the code to load the datasets and to run your functions

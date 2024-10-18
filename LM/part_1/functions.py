@@ -9,13 +9,12 @@ import numpy as np
 import copy
 from copy import deepcopy
 from tqdm import tqdm
-# from torch.utils.tensorboard import SummaryWriter # tensorboard
 import wandb 
 import random
 import torch.optim as optim
 
 from utils import * # Import all the functions from the utils.py file
-from model import LM_RNN, LM_LSTM #TODO
+from model import LM_RNN, LM_LSTM
 
 
 # Training loop
@@ -103,7 +102,7 @@ def init_weights(mat):
                     
                     
 # Running the training and evaluation loops             
-def train_and_evaluate(tmp_train_raw, test_raw, lr, runs=1, n_epoch=200, clip=5, patience=5, device='cuda:0', hid_size=200, emb_size=300, model_type='LSTM', optimizer_type='SGD', use_dropout=False):
+def run(tmp_train_raw, test_raw, lr, runs=1, n_epoch=200, clip=5, patience=5, device='cuda:0', hid_size=200, emb_size=300, model_type='LSTM', optimizer_type='SGD', use_dropout=False):
     '''Running function : preprocess, train and evaluate the model
     
     Args:
@@ -131,54 +130,101 @@ def train_and_evaluate(tmp_train_raw, test_raw, lr, runs=1, n_epoch=200, clip=5,
     criterion_eval = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"], reduction='sum')
     
     train_dataset, dev_dataset, test_dataset = create_dataset(train_raw, dev_raw, test_raw, lang)
-    train_loader, dev_loader, test_loader = create_dataloader(train_dataset, dev_dataset, test_dataset, lang, batch_size=32)
+    train_loader, dev_loader, test_loader = create_dataloader(train_dataset, dev_dataset, test_dataset, lang, batch_size=256)
     # end preproces
     
     vocab_len = len(lang.word2id)
     
-    #TODO
+    model = None
+    optimizer = None
+    best_model_runs = None
+    ppls = []
+    best_ppl_runs = math.inf
+    best_model_runs = None
     
-    losses_train = []
-    losses_dev = []
-    sampled_epochs = []
-    best_ppl = math.inf
-    best_model = None
+    # start the runs
+    for x in tqdm(range(0, runs)):
+        # Model selection
+        if model_type == "RNN":
+            model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
+        elif model_type == "LSTM":
+            model = LM_LSTM(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"], use_dropout=use_dropout).to(device)
+        else:
+            print("Model not implemented")
+            return
+        
+        # Optimizer selection
+        if optimizer_type == "SGD":
+            optimizer = optim.SGD(model.parameters(), lr=lr)
+        elif optimizer_type == "AdamW":
+            optimizer = optim.AdamW(model.parameters(), lr=lr)
+        else:
+            print("Optimizer not implemented")
+            return
+        
+        # start the run
+        losses_train = []
+        losses_dev = []
+        sampled_epochs = []
+        best_ppl = math.inf
+        best_model = None
+        patience_p = patience
+        
+        pbar = tqdm(range(1,epochs))
+        
+        for epoch in pbar:
+            loss = train_loop(train_loader, optimizer, model, lang, criterion_train clip=5)
+            if epoch % 1 == 0: # We check the performance every 1 epoch
+                sampled_epochs.append(epoch)
+                losses_train.append(np.asarray(loss).mean())
+                
+                ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
+                losses_dev.append(np.asarray(loss_dev).mean())
+                pbar.set_description("PPL: %f" % ppl_dev)
+
+                # Add scalars to TensorBoard
+                #writer.add_scalar('Loss/Train', np.asarray(loss).mean(), epoch)
+                #writer.add_scalar('PPL/Dev', ppl_dev, epoch)
+
+                # log metrics to wandb
+                wandb.log({'Loss/Train': np.asarray(loss).mean(), 'PPL/Dev': ppl_dev, 'epoch': epoch})
+
+                if  ppl_dev < best_ppl: # the lower, the better
+                    best_ppl = ppl_dev
+                    # save the model
+                    best_model = copy.deepcopy(model).to('cpu')
+                    patience_p = patience # reset to patience
+                else:
+                    patience_p -= 1
+                if patience_p <= 0: # Early stopping with patience
+                    break # Not nice but it keeps the code clean
+                
+        if best_model is None:
+            best_model = model
+
+        best_model.to(device)
+        final_ppl,  _ = eval_loop(test_loader, best_model, lang, criterion_eval)
+        best_model.to("cpu")
+        
+        ppls.append(final_ppl)
+        
+        #print('Test ppl: ', final_ppl)
+        wandb.log({'Final PPL/Test': final_ppl})
+         
+        if final_ppl < best_ppl_runs:
+            best_ppl_runs = final_ppl
+            #best_model_runs = copy.deepcopy(best_model)
+            #show plot
+            # plt.plot(sampled_epochs, losses_train, label='Train')
+            # plt.plot(sampled_epochs, losses_dev, label='Dev')
+            # plt.legend()
+            # plt.title(f"Loss {test_name}")
+            # plt.show()
+            
+    ppls = np.asarray(ppls)
     
-    
-    for epoch in pbar:
-        loss = train_loop(train_loader, optimizer, criterion_train, model, clip=5)
-
-        if epoch % 1 == 0:
-            sampled_epochs.append(epoch)
-            losses_train.append(np.asarray(loss).mean())
-            ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
-            losses_dev.append(np.asarray(loss_dev).mean())
-            pbar.set_description("PPL: %f" % ppl_dev)
-
-            # Add scalars to TensorBoard
-            #writer.add_scalar('Loss/Train', np.asarray(loss).mean(), epoch)
-            #writer.add_scalar('PPL/Dev', ppl_dev, epoch)
-
-            # log metrics to wandb
-            wandb.log({'Loss/Train': np.asarray(loss).mean(), 'PPL/Dev': ppl_dev, 'epoch': epoch})
-
-
-            if  ppl_dev < best_ppl: # the lower, the better
-                best_ppl = ppl_dev
-                best_model = copy.deepcopy(model).to('cpu')
-                patience = 3
-            else:
-                patience -= 1
-
-            if patience <= 0: # Early stopping with patience
-                break # Not nice but it keeps the code clean
-
-    best_model.to(device)
-    final_ppl,  _ = eval_loop(test_loader, criterion_eval, best_model)
-    print('Test ppl: ', final_ppl)
-    wandb.log({'Final PPL/Test': final_ppl})
-    wandb.finish() 
-    return final_ppl
+    wandb.log({"PPL": round(ppls.mean(),3)})
+    print('PPL', round(ppls.mean(),3), '+-', round(ppls.std(),3))
 
 
 

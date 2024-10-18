@@ -16,7 +16,6 @@ clip = 5
 patience = 5
 device = 'cuda:0'
 
-
 def main():
     bidirectionality = False # Adding bidirectionality
     dropout_layer = False    # Adding dropout layer
