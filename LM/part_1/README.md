@@ -1,23 +1,68 @@
-To run the file:
+### Usage
 
-```python
-python3 main.py <model> <optmizer>
+#### Positional Arguments:
+- `architecture`: The type of model architecture to use. Choose between:
+  - `RNN`
+  - `LSTM`
+  
+- `optimizer`: The optimizer to use. Choose between:
+  - `SGD`
+  - `AdamW`
+
+#### Optional Flags:
+- `--dropout`: Adds a dropout layer to the model. This flag is optional, and if not provided, dropout will be **disabled** by default.
+
+#### Basic Usage (No Dropout)
+
+If you run the script without the `--dropout` flag, dropout will not be added:
+
+```bash
+python3 main.py RNN SGD
 ```
 
-The available models are:
-- `RNN` with optimizer `SGD`
-- `LSTM` (base) with optimizer `RNN`
-- `LSTM_dropout`
-	- with optimizer `SGD` or
-    - with optimizer `AdamW`
+#### Enabling Dropout
 
-So we possible combinations are:
+To enable dropout, use the `--dropout` flag:
 
-```python
-1. python3 main.py RNN SGD
-2. python3 main.py LSTM SGD
-3. python3 main.py LSTM_dropout SGD
-4. python3 main.py LSTM_dropout AdamW
+```bash
+python3 main.py LSTM SGD --dropout
 ```
 
-The program will automatically adapt the parameters based on the model / optimizer chosen. 
+#### Different Architecture and Optimizer Combinations
+
+You can specify different combinations of architectures and optimizers. For example:
+
+```bash
+python3 main.py LSTM AdamW --dropout
+```
+
+In this case, it will use the `LSTM` architecture, the `AdamW` optimizer, and include the dropout layer.
+
+### Examples
+
+1. **RNN with SGD optimizer, no dropout:**
+
+   ```bash
+   python3 main.py RNN SGD
+   ```
+
+2. **LSTM with SGD optimizer, no dropout:**
+
+   ```bash
+   python3 main.py LSTM SGD
+   ```
+3. **LSTM with SGD optimizer, with dropout:**
+
+   ```bash
+   python3 main.py LSTM SGD --dropout
+   ```
+
+4. **LSTM with AdamW optimizer, with dropout:**
+
+   ```bash
+   python3 main.py LSTM AdamW --dropout
+   ```
+
+### Notes
+- You can use either architecture (`RNN` or `LSTM`) and either optimizer (`SGD` or `AdamW`).
+- The `--dropout` flag is optional and adds a dropout layer to the model when enabled.
