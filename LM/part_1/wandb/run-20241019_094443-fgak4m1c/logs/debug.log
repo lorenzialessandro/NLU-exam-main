@@ -1,0 +1,30 @@
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_setup.py:_flush():76] Current SDK version is 0.17.5
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_setup.py:_flush():76] Configure stats pid to 47185
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_setup.py:_flush():76] Loading settings from /home/disi/.config/wandb/settings
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_setup.py:_flush():76] Loading settings from /home/disi/NLU-exam-main/LM/part_1/wandb/settings
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'LM/part_1/main.py', 'program_abspath': '/home/disi/NLU-exam-main/LM/part_1/main.py', 'program': '/home/disi/NLU-exam-main/LM/part_1/main.py'}
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_setup.py:_flush():76] Applying login settings: {'api_key': '***REDACTED***'}
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_setup.py:_flush():76] Applying login settings: {'api_key': '***REDACTED***'}
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-10-19 09:44:43,623 INFO    MainThread:47185 [wandb_init.py:_log_setup():529] Logging user logs to /home/disi/NLU-exam-main/LM/part_1/wandb/run-20241019_094443-fgak4m1c/logs/debug.log
+2024-10-19 09:44:43,624 INFO    MainThread:47185 [wandb_init.py:_log_setup():530] Logging internal logs to /home/disi/NLU-exam-main/LM/part_1/wandb/run-20241019_094443-fgak4m1c/logs/debug-internal.log
+2024-10-19 09:44:43,624 INFO    MainThread:47185 [wandb_init.py:init():569] calling init triggers
+2024-10-19 09:44:43,624 INFO    MainThread:47185 [wandb_init.py:init():576] wandb.init called with sweep_config: {}
+config: {'lr': 1, 'runs': 1, 'hid_size': 200, 'emb_size': 300, 'epochs': 200, 'clip': 5, 'patience': 3, 'device': 'cuda:0', 'model': 'LSTM', 'optimizer': 'SGD', 'use_dropout': True, 'loss': 'CrossEntropyLoss', 'metric': 'Perplexity', 'dataset': 'PTB', 'batch_size': 256}
+2024-10-19 09:44:43,624 INFO    MainThread:47185 [wandb_init.py:init():619] starting backend
+2024-10-19 09:44:43,624 INFO    MainThread:47185 [wandb_init.py:init():623] setting up manager
+2024-10-19 09:44:43,625 INFO    MainThread:47185 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-10-19 09:44:43,626 INFO    MainThread:47185 [wandb_init.py:init():631] backend started and connected
+2024-10-19 09:44:43,628 INFO    MainThread:47185 [wandb_init.py:init():720] updated telemetry
+2024-10-19 09:44:43,632 INFO    MainThread:47185 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-10-19 09:44:43,956 INFO    MainThread:47185 [wandb_run.py:_on_init():2435] communicating current version
+2024-10-19 09:44:44,083 INFO    MainThread:47185 [wandb_run.py:_on_init():2444] got version response upgrade_message: "wandb version 0.18.5 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-10-19 09:44:44,084 INFO    MainThread:47185 [wandb_init.py:init():804] starting run threads in backend
+2024-10-19 09:44:49,383 INFO    MainThread:47185 [wandb_run.py:_console_start():2413] atexit reg
+2024-10-19 09:44:49,383 INFO    MainThread:47185 [wandb_run.py:_redirect():2255] redirect: wrap_raw
+2024-10-19 09:44:49,383 INFO    MainThread:47185 [wandb_run.py:_redirect():2320] Wrapping output streams.
+2024-10-19 09:44:49,383 INFO    MainThread:47185 [wandb_run.py:_redirect():2345] Redirects installed.
+2024-10-19 09:44:49,387 INFO    MainThread:47185 [wandb_init.py:init():847] run started, returning control to user process
+2024-10-19 10:09:47,272 WARNING MsgRouterThr:47185 [router.py:message_loop():77] message_loop has been closed

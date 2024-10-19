@@ -44,8 +44,8 @@ class LM_RNN(nn.Module):
 class LM_LSTM(nn.Module):
     '''LSTM model for language modeling'''
     
-    def __init__(self, emb_size, hidden_size, output_size, pad_index=0, use_dropout=False, out_dropout=0.1,
-                 emb_dropout=0.1, n_layers=1):
+    def __init__(self, emb_size, hidden_size, output_size, pad_index=0, use_dropout=False, out_dropout=0.3,
+                 emb_dropout=0.3, n_layers=1):
         '''LSTM model for language modeling
         
         Args:

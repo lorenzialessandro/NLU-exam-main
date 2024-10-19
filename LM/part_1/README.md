@@ -1,16 +1,16 @@
 ### Usage
 
 #### Positional Arguments:
-- `architecture`: The type of model architecture to use. Choose between:
+- `architecture`: The type of **model** architecture to use. Choose between:
   - `RNN`
   - `LSTM`
   
-- `optimizer`: The optimizer to use. Choose between:
+- `optimizer`: The **optimizer** to use. Choose between:
   - `SGD`
   - `AdamW`
 
 #### Optional Flags:
-- `--dropout`: Adds a dropout layer to the model. This flag is optional, and if not provided, dropout will be **disabled** by default.
+- `--dropout`: Adds a **dropout** layer to the model. This flag is optional, and if not provided, dropout will be **disabled** by default.
 
 #### Basic Usage (No Dropout)
 
@@ -28,17 +28,8 @@ To enable dropout, use the `--dropout` flag:
 python3 main.py LSTM SGD --dropout
 ```
 
-#### Different Architecture and Optimizer Combinations
 
-You can specify different combinations of architectures and optimizers. For example:
-
-```bash
-python3 main.py LSTM AdamW --dropout
-```
-
-In this case, it will use the `LSTM` architecture, the `AdamW` optimizer, and include the dropout layer.
-
-### Examples
+### Possible combinations:
 
 1. **RNN with SGD optimizer, no dropout:**
 
@@ -63,6 +54,3 @@ In this case, it will use the `LSTM` architecture, the `AdamW` optimizer, and in
    python3 main.py LSTM AdamW --dropout
    ```
 
-### Notes
-- You can use either architecture (`RNN` or `LSTM`) and either optimizer (`SGD` or `AdamW`).
-- The `--dropout` flag is optional and adds a dropout layer to the model when enabled.

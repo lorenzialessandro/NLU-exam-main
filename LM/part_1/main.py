@@ -6,11 +6,11 @@ from utils import read_file
 import argparse
 
 # define parameters
-lr = 2
+lr = 0.0005
 runs = 1
 hid_size = 200    # size of hidden layer
 emb_size = 300    # size of embedding layer
-epochs = 100
+epochs = 200
 clip = 5
 patience = 3
 device = 'cuda:0'

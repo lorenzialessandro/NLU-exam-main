@@ -16,7 +16,6 @@ import torch.optim as optim
 from utils import * # Import all the functions from the utils.py file
 from model import LM_RNN, LM_LSTM
 
-
 # Training loop
 def train_loop(data, optimizer, model, lang, criterion, clip=5):
     '''Train loop for the model
@@ -99,8 +98,8 @@ def init_weights(mat):
                 torch.nn.init.uniform_(m.weight, -0.01, 0.01)
                 if m.bias != None:
                     m.bias.data.fill_(0.01)
-                    
-                    
+         
+                                  
 # Running the training and evaluation loops             
 def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5, device='cuda:0', hid_size=200, emb_size=300, model_type='LSTM', optimizer_type='SGD', use_dropout=False):
     '''Running function : preprocess, train and evaluate the model
