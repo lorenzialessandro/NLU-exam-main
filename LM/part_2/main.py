@@ -1,84 +1,74 @@
 # This file is used to run your functions and print the results
 # Please write your fuctions or classes in the functions.py
 
-from functions import *
-from model import *
-from utils import *
-import sys
+from functions import * # Import everything from functions.py file
+from utils import read_file
+import argparse
 
 # define parameters
-device = 'cuda:0'
+lr = 1
+runs = 1
 hid_size = 200    # size of hidden layer
 emb_size = 300    # size of embedding layer
-n_epochs = 100
+epochs = 200
+clip = 5
 patience = 3
+device = 'cuda:0'
+
+import wandb
+import math
+import random
+wandb.login(key="b538d8603f23f0c22e0518a7fcef14eef2620e7d")
 
 def main():
-
-
-    # Preprocess and load data
-    train_loader, dev_loader, test_loader, lang, train_dataset = preprocess_and_load_data()
-    vocab_len = len(lang.word2id)
-    total_samples = len(train_dataset)
-
-    if len(sys.argv) < 3:
-        print("Usage: python3 main.py <model> <optimizer>")
-        return
-
-    model = sys.argv[1]
-    optimizer = sys.argv[2]
-
-    # LSTM_weight_tying with SGD
-    # LSTM_VariationalDropout with SGD
-    # LSTM_VariationalDropout with NTAvSGD
-
-    lr = 1.1         # learning rate
-    emb_size = hid_size # for weight tying
-
-    if model == "LSTM_weight_tying":
-        if optimizer == "SGD":
-            lr = 2
-            model = LM_LSTM_VariationalDropout(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
-            optimizer = optim.SGD(model.parameters(), lr=lr)
-        else:
-            print("LSTM_weight_tying can be used only with SGD")
-            return
-    elif model == "LSTM_VariationalDropout":
-        if optimizer == "SGD":
-            lr = 1.5
-            model = LM_LSTM_VariationalDropout(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
-            optimizer = optim.SGD(model.parameters(), lr=lr)
-        elif optimizer == "NTAvSGD":
-            lr = 1.3
-            model = LM_LSTM_VariationalDropout(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
-            optimizer = NTAvSGD(model.parameters(), lr=lr, total_samples=total_samples, batch_size=256)
-        else:
-            print("LSTM_VariationalDropout can be used with SGD or NTAvSGD")
-            return
-    else: 
-        print("Usage: python3 main.py <model> <optimizer>")
-        return
+    var_dropout = False # Use variational dropout
+    weight_tying = False # Use weight tying
+    parser = argparse.ArgumentParser(description="Language Modeling Task")
+    parser.add_argument('optimizer', choices=['SGD', 'NTAvSGD'], help="Choose the optimizer (SGD or AdamW)")
+    parser.add_argument('--weight_tying', action='store_true', help="Use weight tying in the model")
+    parser.add_argument('--var_dropout', action='store_true', help="Use variational dropout in the model")
+    args = parser.parse_args()
     
-     
-    model.apply(init_weights)
-    criterion_train = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"])
-    criterion_eval = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"], reduction='sum')   
+    optimizer = args.optimizer
+    if args.weight_tying:
+        weight_tying = True
+    if args.var_dropout:
+        var_dropout = True
+    
+    # Load the datasets
+    train_raw = read_file("dataset/ptb.train.txt")
+    dev_raw = read_file("dataset/ptb.valid.txt")
+    test_raw = read_file("dataset/ptb.test.txt")
+    
+    wandb.init(
+        project="LM",
+        config={
+            "lr": lr,
+            "runs": runs,
+            "hid_size": hid_size,
+            "emb_size": emb_size,
+            "epochs": epochs,
+            "clip": clip,
+            "patience": patience,
+            "device": device,
+            "model": 'LSMT',
+            "optimizer": optimizer,
+            "weight_tying": weight_tying,
+            "var_dropout": var_dropout,
+            "loss": "CrossEntropyLoss",
+            "metric": "Perplexity",
+            "dataset": "PTB",
+            "batch_size": 256,
+        }
 
+    )
     
-    # Train and evaluate the model
-    result = train_and_evaluate(train_loader, dev_loader, test_loader, optimizer, criterion_train, criterion_eval, model, device, n_epochs, patience)
-    
-    print(result)
-    
-    path = 'model_bin/LSTM_VariationalDropoutNTAvSGD.pt'
-    torch.save(model.state_dict(), path)
-
-    # To load the model you need to initialize it
-    # model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
-    # Then you load it
-    # model.load_state_dict(torch.load(path))
-        
+    # Lunch the run(s) with the parameters
+    run(train_raw, dev_raw, test_raw, lr=lr, runs=runs, epochs=epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, optimizer_type=optimizer, weight_tying=weight_tying, var_dropout=var_dropout)
 
 if __name__ == "__main__":
+    #Wrtite the code to load the datasets and to run your functions
+    # Print the results
+
     main()
 

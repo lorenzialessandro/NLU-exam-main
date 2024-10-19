@@ -1,22 +1,36 @@
-To run the file:
+### Usage
 
-```python
-python3 main.py <model> <optmizer>
-```
+#### Positional Arguments:
+- `optimizer`: The **optimizer** to use. Choose between:
+  - `SGD`
+  - `NTAvSGD`
 
-The available models are:
-- `LSTM_weight_tying` : LSTM that apply weight tying 
-	- optimizer `SGD`
-- `LSTM_VariationalDropout` : LSTM that apply variational dropout and weight tying 
-	1. optimizer `SGD`
-	2. optimizer `NTAvSG`
+#### Optional Flags:
+- `--weight_tying`: Use **weight tying** in the model. This flag is optional, and if not provided, weight tying will be **not used** by default.
+- `--var_dropout`: Use **variational dropout** in the model. This flag is optional, and if not provided, variational dropout will be **not used** by default.
 
-So we possible combinations are:
+### Possible combinations:
 
-```python
-1. python3 main.py LSTM_weight_tying SGD
-2. python3 main.py LSTM_VariationalDropout SGD
-3. python3 main.py LSTM_VariationalDropout NTAvSG
-```
+1. **LSTM with SGD optimizer, no weight tying, no variational dropout:**
 
-The program will automatically adapt the parameters based on the model / optimizer chosen. 
+   ```bash
+   python3 main.py LSTM SGD
+   ```
+
+2. **LSTM with SGD optimizer, with weight tying, no variational dropout:**
+
+   ```bash
+   python3 main.py LSTM SGD --weight_tying
+   ```
+3. **LSTM with SGD optimizer, with weight tying and with variational dropout:**
+
+   ```bash
+   python3 main.py LSTM SGD --weight_tying --var_dropout
+   ```
+
+4. **LSTM with NTAvSGD optimizer, with weight tying and with variational dropout:**
+
+   ```bash
+   python3 main.py LSTM NTAvSGD --weight_tying --var_dropout
+   ```
+

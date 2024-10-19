@@ -187,7 +187,7 @@ def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5
                 #writer.add_scalar('PPL/Dev', ppl_dev, epoch)
 
                 # log metrics to wandb
-                wandb.log({'Loss/Train': np.asarray(loss).mean(), 'PPL/Dev': ppl_dev, 'epoch': epoch})
+                #wandb.log({'Loss/Train': np.asarray(loss).mean(), 'PPL/Dev': ppl_dev, 'epoch': epoch})
 
                 if  ppl_dev < best_ppl: # the lower, the better
                     best_ppl = ppl_dev
@@ -209,7 +209,7 @@ def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5
         ppls.append(final_ppl)
         
         #print('Test ppl: ', final_ppl)
-        wandb.log({'Final PPL/Test': final_ppl})
+        #wandb.log({'Final PPL/Test': final_ppl})
          
         if final_ppl < best_ppl_runs:
             best_ppl_runs = final_ppl
@@ -223,7 +223,7 @@ def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5
             
     ppls = np.asarray(ppls)
     
-    wandb.log({"PPL": round(ppls.mean(),3)})
+    #wandb.log({"PPL": round(ppls.mean(),3)})
     print('PPL', round(ppls.mean(),3), '+-', round(ppls.std(),3))
     
     # Save the model

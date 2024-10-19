@@ -2,6 +2,38 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+class VarDropout(nn.Module):
+    '''Variational dropout for the embedding and LSTM layers'''
+    
+    def __init__(self, dropout):
+        '''Variational dropout for the embedding and LSTM layers
+        
+        Args:
+            dropout (float): dropout probability
+        '''
+        super(VarDropout, self).__init__()
+        self.dropout = dropout
+
+    def forward(self, input_tensor):
+        '''Forward pass
+        
+        Args:
+            input_tensor (torch.Tensor): input tensor
+        
+        Returns:
+            scaled (torch.Tensor): scaled tensor
+        '''
+        if not self.training or self.dropout == 0:
+            return input_tensor
+        
+        batch_size, _, feature_size = x.size() # get batch size, sequence length, feature size
+        
+        mask = torch.bernoulli(torch.full((batch_size, 1, feature_size), 1 - self.dropout, device=x.device)) # generate mask
+        
+        scaled = input_tensor.mul(mask).div(1 - self.dropout) # apply mask and scale by (1 - dropout)
+
+        return scaled
+
 # Long-Short-Term-Memories (LSTM)
 class LM_LSTM(nn.Module):
     '''LSTM model for language modeling'''

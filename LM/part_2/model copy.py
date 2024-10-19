@@ -52,6 +52,7 @@ class VarDropout(nn.Module):
 
         if not self.training:
             return input_tensor
+        
 
         # mask = torch.empty_like(input_tensor).bernoulli_(1 - self.dropout)
         mask = torch.bernoulli(torch.full_like(input_tensor, 1 - self.dropout))
