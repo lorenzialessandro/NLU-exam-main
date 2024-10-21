@@ -57,7 +57,7 @@ class Lang():
     Args:
         corpus (list): a list of strings, each representing a sentence
         special_tokens (list): a list of special tokens to include in the vocabulary
-    ''' 
+    '''    
     def __init__(self, corpus, special_tokens=[]):
         self.word2id = self.get_vocab(corpus, special_tokens)
         self.id2word = {v:k for k, v in self.word2id.items()}
@@ -74,8 +74,8 @@ class Lang():
                     i += 1
         return output
     
-    
-# Create dataset class
+ 
+# Create dataset class    
 class PennTreeBank (data.Dataset):
     '''Dataset class for the Penn Treebank dataset
     
@@ -119,7 +119,7 @@ class PennTreeBank (data.Dataset):
                     break
             res.append(tmp_seq)
         return res
-    
+
 # Create a collate function
 def collate_fn(data, pad_token):
     def merge(sequences):
