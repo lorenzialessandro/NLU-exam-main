@@ -1,0 +1,16 @@
+{"time":"2024-10-21T09:08:23.5532414+02:00","level":"INFO","msg":"using version","core version":"0.18.5"}
+{"time":"2024-10-21T09:08:23.5532414+02:00","level":"INFO","msg":"created symlink","path":"D:\\NLU-exam-main\\LM\\part_2\\wandb\\run-20241021_090823-upphk2ij\\logs\\debug-core.log"}
+{"time":"2024-10-21T09:08:25.595608+02:00","level":"INFO","msg":"created new stream","id":"upphk2ij"}
+{"time":"2024-10-21T09:08:25.595608+02:00","level":"INFO","msg":"stream: started","id":"upphk2ij"}
+{"time":"2024-10-21T09:08:25.595608+02:00","level":"INFO","msg":"sender: started","stream_id":"upphk2ij"}
+{"time":"2024-10-21T09:08:25.595608+02:00","level":"INFO","msg":"handler: started","stream_id":{"value":"upphk2ij"}}
+{"time":"2024-10-21T09:08:25.595608+02:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"upphk2ij"}}
+{"time":"2024-10-21T09:08:26.6597335+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-10-21T09:08:28.4766481+02:00","level":"INFO","msg":"stream: closing","id":"upphk2ij"}
+{"time":"2024-10-21T09:08:28.4766481+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-10-21T09:08:28.477467+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-10-21T09:08:38.5578189+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-10-21T09:08:39.9928572+02:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"upphk2ij"}}
+{"time":"2024-10-21T09:08:39.9928572+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"upphk2ij"}}
+{"time":"2024-10-21T09:08:39.9928572+02:00","level":"INFO","msg":"sender: closed","stream_id":"upphk2ij"}
+{"time":"2024-10-21T09:08:39.9933618+02:00","level":"INFO","msg":"stream: closed","id":"upphk2ij"}
