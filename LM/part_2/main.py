@@ -8,7 +8,7 @@ import argparse
 # define parameters
 lr = 1
 runs = 1
-hid_size = 200    # size of hidden layer
+hid_size = 300    # size of hidden layer
 emb_size = 300    # size of embedding layer
 epochs = 200
 clip = 5
@@ -32,7 +32,6 @@ def main():
     optimizer = args.optimizer
     if args.weight_tying:
         weight_tying = True
-        emb_size = hid_size # needed for weight tying
     if args.var_dropout:
         var_dropout = True
     
