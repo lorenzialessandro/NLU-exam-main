@@ -6,13 +6,13 @@ from utils import read_file
 import argparse
 
 # define parameters
-lr = 1
+lr = 2
 runs = 1
 hid_size = 300    # size of hidden layer
 emb_size = 300    # size of embedding layer
 epochs = 200
 clip = 5
-patience = 3
+patience = 5
 device = 'cuda:0'
 
 import wandb
@@ -64,7 +64,6 @@ def main():
     )
     
     # Lunch the run(s) with the parameters
-    print(weight_tying)
     run(train_raw, dev_raw, test_raw, lr=lr, runs=runs, epochs=epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, optimizer_type=optimizer, weight_tying=weight_tying, var_dropout=var_dropout)
 
 if __name__ == "__main__":

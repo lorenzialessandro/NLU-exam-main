@@ -1,0 +1,50 @@
+True
+True
+  0%|                                                                                                                                          | 0/1 [00:00<?, ?it/s]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  0%|                                                                                                                                          | 0/1 [06:33<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/disi/NLU-exam-main/LM/part_2/main.py", line 74, in <module>
+  File "/home/disi/NLU-exam-main/LM/part_2/main.py", line 68, in main
+  File "/home/disi/NLU-exam-main/LM/part_2/functions.py", line 171, in run
+    loss = train_loop(train_loader, optimizer, model, lang, criterion_train, clip=5)
+  File "/home/disi/NLU-exam-main/LM/part_2/functions.py", line 38, in train_loop
+    for sample in data:
+  File "/home/disi/anaconda3/envs/nlu24/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/home/disi/anaconda3/envs/nlu24/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 675, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/disi/anaconda3/envs/nlu24/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 54, in fetch
+    return self.collate_fn(data)
+  File "/home/disi/NLU-exam-main/LM/part_2/utils.py", line 151, in collate_fn
+    new_item["source"] = source.to(device)
+KeyboardInterrupt

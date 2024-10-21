@@ -57,7 +57,6 @@ class LM_LSTM(nn.Module):
         super(LM_LSTM, self).__init__()
         
         self.weight_tying = weight_tying
-        print(self.weight_tying)
         self.var_dropout = var_dropout
         
         self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
@@ -68,9 +67,9 @@ class LM_LSTM(nn.Module):
         
         if self.var_dropout:
             self.dropout_emb = VarDropout(emb_dropout) # variational dropout
-            self.dropout_rnn = VarDropout(rnn_dropout) # variational dropout
+            self.dropout_rnn = VarDropout(out_dropout) # variational dropout
 
-        self.output = nn.Linear(hidden_size, output_size)
+        self.output = nn.Linear(hidden_size, output_size, bias=False)
         if self.weight_tying:
             self.output.weight = self.embedding.weight # weight tying
 
