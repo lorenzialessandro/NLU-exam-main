@@ -24,7 +24,7 @@ def main():
     var_dropout = False # Use variational dropout
     weight_tying = False # Use weight tying
     parser = argparse.ArgumentParser(description="Language Modeling Task")
-    parser.add_argument('optimizer', choices=['SGD', 'NTAvSGD'], help="Choose the optimizer (SGD or AdamW)")
+    parser.add_argument('optimizer', choices=['SGD', 'NTAvSGD'], help="Choose the optimizer (SGD or NTAvSGD)")
     parser.add_argument('--weight_tying', action='store_true', help="Use weight tying in the model")
     parser.add_argument('--var_dropout', action='store_true', help="Use variational dropout in the model")
     args = parser.parse_args()
@@ -32,6 +32,7 @@ def main():
     optimizer = args.optimizer
     if args.weight_tying:
         weight_tying = True
+        emb_size = hid_size # needed for weight tying
     if args.var_dropout:
         var_dropout = True
     

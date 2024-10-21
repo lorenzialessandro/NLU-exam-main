@@ -1,0 +1,202 @@
+2024-10-21 07:27:05,827 INFO    StreamThr :2669 [internal.py:wandb_internal():85] W&B internal server running at pid: 2669, started at: 2024-10-21 07:27:05.826494
+2024-10-21 07:27:05,828 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: status
+2024-10-21 07:27:05,834 INFO    WriterThread:2669 [datastore.py:open_for_write():87] open: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/run-u7gm7crj.wandb
+2024-10-21 07:27:05,834 DEBUG   SenderThread:2669 [sender.py:send():379] send: header
+2024-10-21 07:27:05,838 DEBUG   SenderThread:2669 [sender.py:send():379] send: run
+2024-10-21 07:27:06,221 INFO    SenderThread:2669 [dir_watcher.py:__init__():211] watching files in: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files
+2024-10-21 07:27:06,221 INFO    SenderThread:2669 [sender.py:_start_run_threads():1188] run started: u7gm7crj with start time 1729495625.832002
+2024-10-21 07:27:06,231 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: check_version
+2024-10-21 07:27:06,231 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: check_version
+2024-10-21 07:27:06,290 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: run_start
+2024-10-21 07:27:06,296 DEBUG   HandlerThread:2669 [system_info.py:__init__():26] System info init
+2024-10-21 07:27:06,296 DEBUG   HandlerThread:2669 [system_info.py:__init__():41] System info init done
+2024-10-21 07:27:06,296 INFO    HandlerThread:2669 [system_monitor.py:start():194] Starting system monitor
+2024-10-21 07:27:06,297 INFO    SystemMonitor:2669 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-10-21 07:27:06,297 INFO    HandlerThread:2669 [system_monitor.py:probe():214] Collecting system info
+2024-10-21 07:27:06,297 INFO    SystemMonitor:2669 [interfaces.py:start():188] Started cpu monitoring
+2024-10-21 07:27:06,298 INFO    SystemMonitor:2669 [interfaces.py:start():188] Started disk monitoring
+2024-10-21 07:27:06,298 INFO    SystemMonitor:2669 [interfaces.py:start():188] Started gpu monitoring
+2024-10-21 07:27:06,299 INFO    SystemMonitor:2669 [interfaces.py:start():188] Started memory monitoring
+2024-10-21 07:27:06,300 INFO    SystemMonitor:2669 [interfaces.py:start():188] Started network monitoring
+2024-10-21 07:27:06,310 DEBUG   HandlerThread:2669 [system_info.py:probe():152] Probing system
+2024-10-21 07:27:06,312 DEBUG   HandlerThread:2669 [system_info.py:_probe_git():137] Probing git
+2024-10-21 07:27:06,318 DEBUG   HandlerThread:2669 [system_info.py:_probe_git():145] Probing git done
+2024-10-21 07:27:06,318 DEBUG   HandlerThread:2669 [system_info.py:probe():200] Probing system done
+2024-10-21 07:27:06,318 DEBUG   HandlerThread:2669 [system_monitor.py:probe():223] {'os': 'Linux-5.15.0-1064-azure-x86_64-with-glibc2.31', 'python': '3.10.13', 'heartbeatAt': '2024-10-21T07:27:06.310870', 'startedAt': '2024-10-21T07:27:05.822581', 'docker': None, 'cuda': None, 'args': ('SGD', '--weight_tying'), 'state': 'running', 'program': '/home/disi/NLU-exam-main/LM/part_2/main.py', 'codePathLocal': 'main.py', 'codePath': 'LM/part_2/main.py', 'git': {'remote': 'https://github.com/lorenzialessandro/NLU-exam-main', 'commit': '0e4365eccc95883388b1e9ec35905cdc965b83ee'}, 'email': 'lorenzi.alessandro19@gmail.com', 'root': '/home/disi/NLU-exam-main', 'host': 'labDIIWIS', 'username': 'disi', 'executable': '/home/disi/anaconda3/envs/nlu24/bin/python3', 'cpu_count': 6, 'cpu_count_logical': 6, 'cpu_freq': {'current': 2593.992, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 2593.992, 'min': 0.0, 'max': 0.0}, {'current': 2593.992, 'min': 0.0, 'max': 0.0}, {'current': 2593.992, 'min': 0.0, 'max': 0.0}, {'current': 2593.992, 'min': 0.0, 'max': 0.0}, {'current': 2593.992, 'min': 0.0, 'max': 0.0}, {'current': 2593.992, 'min': 0.0, 'max': 0.0}], 'disk': {'/': {'total': 123.86906433105469, 'used': 27.177734375}}, 'gpu': 'Tesla V100-PCIE-16GB', 'gpu_count': 1, 'gpu_devices': [{'name': 'Tesla V100-PCIE-16GB', 'memory_total': 17179869184}], 'memory': {'total': 110.0458869934082}}
+2024-10-21 07:27:06,318 INFO    HandlerThread:2669 [system_monitor.py:probe():224] Finished collecting system info
+2024-10-21 07:27:06,318 INFO    HandlerThread:2669 [system_monitor.py:probe():227] Publishing system info
+2024-10-21 07:27:06,318 DEBUG   HandlerThread:2669 [system_info.py:_save_conda():209] Saving list of conda packages installed into the current environment
+2024-10-21 07:27:07,223 INFO    Thread-12 :2669 [dir_watcher.py:_on_file_created():271] file/dir created: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/conda-environment.yaml
+2024-10-21 07:27:14,553 DEBUG   HandlerThread:2669 [system_info.py:_save_conda():224] Saving conda packages done
+2024-10-21 07:27:14,828 INFO    HandlerThread:2669 [system_monitor.py:probe():229] Finished publishing system info
+2024-10-21 07:27:14,877 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: status_report
+2024-10-21 07:27:14,877 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: keepalive
+2024-10-21 07:27:14,878 DEBUG   SenderThread:2669 [sender.py:send():379] send: files
+2024-10-21 07:27:14,878 INFO    SenderThread:2669 [sender.py:_save_file():1454] saving file wandb-metadata.json with policy now
+2024-10-21 07:27:15,192 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: python_packages
+2024-10-21 07:27:15,192 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: python_packages
+2024-10-21 07:27:15,193 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: stop_status
+2024-10-21 07:27:15,194 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: internal_messages
+2024-10-21 07:27:15,194 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: stop_status
+2024-10-21 07:27:15,224 INFO    Thread-12 :2669 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/conda-environment.yaml
+2024-10-21 07:27:15,224 INFO    Thread-12 :2669 [dir_watcher.py:_on_file_created():271] file/dir created: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/requirements.txt
+2024-10-21 07:27:15,224 INFO    Thread-12 :2669 [dir_watcher.py:_on_file_created():271] file/dir created: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/wandb-metadata.json
+2024-10-21 07:27:15,357 DEBUG   SenderThread:2669 [sender.py:send():379] send: telemetry
+2024-10-21 07:27:15,388 INFO    wandb-upload_0:2669 [upload_job.py:push():130] Uploaded file /tmp/tmpqc8o5x1kwandb/muj9iwhx-wandb-metadata.json
+2024-10-21 07:27:16,288 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: internal_messages
+2024-10-21 07:27:16,358 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: status_report
+2024-10-21 07:27:17,225 INFO    Thread-12 :2669 [dir_watcher.py:_on_file_created():271] file/dir created: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/output.log
+2024-10-21 07:27:17,271 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: internal_messages
+2024-10-21 07:27:18,268 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: internal_messages
+2024-10-21 07:27:19,225 INFO    Thread-12 :2669 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/output.log
+2024-10-21 07:27:19,268 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: internal_messages
+2024-10-21 07:27:19,951 DEBUG   SenderThread:2669 [sender.py:send():379] send: telemetry
+2024-10-21 07:27:20,227 DEBUG   SenderThread:2669 [sender.py:send():379] send: telemetry
+2024-10-21 07:27:20,276 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: internal_messages
+2024-10-21 07:27:21,272 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: internal_messages
+2024-10-21 07:27:21,382 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: status_report
+2024-10-21 07:27:21,435 DEBUG   SenderThread:2669 [sender.py:send():379] send: exit
+2024-10-21 07:27:21,435 INFO    SenderThread:2669 [sender.py:send_exit():586] handling exit code: 1
+2024-10-21 07:27:21,440 INFO    SenderThread:2669 [sender.py:send_exit():588] handling runtime: 15
+2024-10-21 07:27:21,442 INFO    SenderThread:2669 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-10-21 07:27:21,442 INFO    SenderThread:2669 [sender.py:send_exit():594] send defer
+2024-10-21 07:27:21,443 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:21,443 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 0
+2024-10-21 07:27:21,443 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:21,443 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 0
+2024-10-21 07:27:21,443 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 1
+2024-10-21 07:27:21,443 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:21,443 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 1
+2024-10-21 07:27:21,443 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:21,443 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 1
+2024-10-21 07:27:21,443 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 2
+2024-10-21 07:27:21,444 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:21,444 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 2
+2024-10-21 07:27:21,444 INFO    HandlerThread:2669 [system_monitor.py:finish():203] Stopping system monitor
+2024-10-21 07:27:21,444 DEBUG   SystemMonitor:2669 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-10-21 07:27:21,444 INFO    HandlerThread:2669 [interfaces.py:finish():200] Joined cpu monitor
+2024-10-21 07:27:21,444 DEBUG   SystemMonitor:2669 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-10-21 07:27:21,444 INFO    HandlerThread:2669 [interfaces.py:finish():200] Joined disk monitor
+2024-10-21 07:27:21,445 DEBUG   SystemMonitor:2669 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-10-21 07:27:21,475 INFO    HandlerThread:2669 [interfaces.py:finish():200] Joined gpu monitor
+2024-10-21 07:27:21,475 INFO    HandlerThread:2669 [interfaces.py:finish():200] Joined memory monitor
+2024-10-21 07:27:21,475 INFO    HandlerThread:2669 [interfaces.py:finish():200] Joined network monitor
+2024-10-21 07:27:21,476 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:21,476 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 2
+2024-10-21 07:27:21,476 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 3
+2024-10-21 07:27:21,476 DEBUG   SenderThread:2669 [sender.py:send():379] send: stats
+2024-10-21 07:27:21,476 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:21,476 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 3
+2024-10-21 07:27:21,477 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:21,477 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 3
+2024-10-21 07:27:21,477 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 4
+2024-10-21 07:27:21,477 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:21,477 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 4
+2024-10-21 07:27:21,477 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:21,477 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 4
+2024-10-21 07:27:21,477 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 5
+2024-10-21 07:27:21,477 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:21,477 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 5
+2024-10-21 07:27:21,478 DEBUG   SenderThread:2669 [sender.py:send():379] send: summary
+2024-10-21 07:27:21,478 INFO    SenderThread:2669 [sender.py:_save_file():1454] saving file wandb-summary.json with policy end
+2024-10-21 07:27:21,478 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:21,478 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 5
+2024-10-21 07:27:21,478 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 6
+2024-10-21 07:27:21,478 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:21,478 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 6
+2024-10-21 07:27:21,478 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:21,479 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 6
+2024-10-21 07:27:21,481 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: status_report
+2024-10-21 07:27:21,605 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 7
+2024-10-21 07:27:21,605 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:21,606 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 7
+2024-10-21 07:27:21,606 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:21,606 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 7
+2024-10-21 07:27:22,226 INFO    Thread-12 :2669 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/config.yaml
+2024-10-21 07:27:22,226 INFO    Thread-12 :2669 [dir_watcher.py:_on_file_created():271] file/dir created: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/wandb-summary.json
+2024-10-21 07:27:22,435 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: poll_exit
+2024-10-21 07:27:22,440 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 8
+2024-10-21 07:27:22,440 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: poll_exit
+2024-10-21 07:27:22,440 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:22,440 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 8
+2024-10-21 07:27:22,440 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:22,441 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 8
+2024-10-21 07:27:22,441 INFO    SenderThread:2669 [job_builder.py:build():440] Attempting to build job artifact
+2024-10-21 07:27:22,441 INFO    SenderThread:2669 [job_builder.py:_get_source_type():569] is repo sourced job
+2024-10-21 07:27:22,457 INFO    SenderThread:2669 [job_builder.py:build():545] adding wandb-job metadata file
+2024-10-21 07:27:22,469 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 9
+2024-10-21 07:27:22,470 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:22,470 DEBUG   SenderThread:2669 [sender.py:send():379] send: artifact
+2024-10-21 07:27:22,470 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 9
+2024-10-21 07:27:23,226 INFO    Thread-12 :2669 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/output.log
+2024-10-21 07:27:23,435 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: poll_exit
+2024-10-21 07:27:23,448 INFO    wandb-upload_0:2669 [upload_job.py:push():88] Uploaded file /tmp/tmpak84hm5p/wandb-job.json
+2024-10-21 07:27:23,461 INFO    wandb-upload_1:2669 [upload_job.py:push():88] Uploaded file /home/disi/.local/share/wandb/artifacts/staging/tmp88m7pck3
+2024-10-21 07:27:24,354 INFO    SenderThread:2669 [sender.py:send_artifact():1537] sent artifact job-https___github.com_lorenzialessandro_NLU-exam-main_LM_part_2_main.py - {'id': 'QXJ0aWZhY3Q6MTI4ODYyODI2NQ==', 'state': 'PENDING', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjQ3OTY5Njg3MA==', 'latestArtifact': None}}
+2024-10-21 07:27:24,354 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:24,354 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 9
+2024-10-21 07:27:24,354 INFO    SenderThread:2669 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-10-21 07:27:25,227 INFO    SenderThread:2669 [dir_watcher.py:finish():388] scan: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files
+2024-10-21 07:27:25,227 INFO    SenderThread:2669 [dir_watcher.py:finish():402] scan save: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/wandb-metadata.json wandb-metadata.json
+2024-10-21 07:27:25,227 INFO    SenderThread:2669 [dir_watcher.py:finish():402] scan save: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/conda-environment.yaml conda-environment.yaml
+2024-10-21 07:27:25,228 INFO    SenderThread:2669 [dir_watcher.py:finish():402] scan save: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/wandb-summary.json wandb-summary.json
+2024-10-21 07:27:25,228 INFO    SenderThread:2669 [dir_watcher.py:finish():402] scan save: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/output.log output.log
+2024-10-21 07:27:25,231 INFO    SenderThread:2669 [dir_watcher.py:finish():402] scan save: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/config.yaml config.yaml
+2024-10-21 07:27:25,233 INFO    SenderThread:2669 [dir_watcher.py:finish():402] scan save: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/requirements.txt requirements.txt
+2024-10-21 07:27:25,235 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 10
+2024-10-21 07:27:25,235 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: poll_exit
+2024-10-21 07:27:25,236 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:25,237 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 10
+2024-10-21 07:27:25,238 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:25,238 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 10
+2024-10-21 07:27:25,238 INFO    SenderThread:2669 [file_pusher.py:finish():169] shutting down file pusher
+2024-10-21 07:27:25,436 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: poll_exit
+2024-10-21 07:27:25,437 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: poll_exit
+2024-10-21 07:27:25,569 INFO    wandb-upload_0:2669 [upload_job.py:push():130] Uploaded file /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/conda-environment.yaml
+2024-10-21 07:27:25,611 INFO    wandb-upload_1:2669 [upload_job.py:push():130] Uploaded file /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/wandb-summary.json
+2024-10-21 07:27:25,636 INFO    wandb-upload_3:2669 [upload_job.py:push():130] Uploaded file /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/config.yaml
+2024-10-21 07:27:25,646 INFO    wandb-upload_2:2669 [upload_job.py:push():130] Uploaded file /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/output.log
+2024-10-21 07:27:26,010 INFO    wandb-upload_4:2669 [upload_job.py:push():130] Uploaded file /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/files/requirements.txt
+2024-10-21 07:27:26,211 INFO    Thread-11 (_thread_body):2669 [sender.py:transition_state():614] send defer: 11
+2024-10-21 07:27:26,211 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:26,211 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 11
+2024-10-21 07:27:26,212 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:26,212 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 11
+2024-10-21 07:27:26,212 INFO    SenderThread:2669 [file_pusher.py:join():175] waiting for file pusher
+2024-10-21 07:27:26,212 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 12
+2024-10-21 07:27:26,212 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:26,212 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 12
+2024-10-21 07:27:26,212 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:26,212 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 12
+2024-10-21 07:27:26,212 INFO    SenderThread:2669 [file_stream.py:finish():601] file stream finish called
+2024-10-21 07:27:26,345 INFO    SenderThread:2669 [file_stream.py:finish():605] file stream finish is done
+2024-10-21 07:27:26,345 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 13
+2024-10-21 07:27:26,345 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:26,345 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 13
+2024-10-21 07:27:26,346 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:26,346 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 13
+2024-10-21 07:27:26,346 INFO    SenderThread:2669 [sender.py:transition_state():614] send defer: 14
+2024-10-21 07:27:26,346 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: defer
+2024-10-21 07:27:26,346 DEBUG   SenderThread:2669 [sender.py:send():379] send: final
+2024-10-21 07:27:26,346 INFO    HandlerThread:2669 [handler.py:handle_request_defer():184] handle defer: 14
+2024-10-21 07:27:26,346 DEBUG   SenderThread:2669 [sender.py:send():379] send: footer
+2024-10-21 07:27:26,347 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: defer
+2024-10-21 07:27:26,347 INFO    SenderThread:2669 [sender.py:send_request_defer():610] handle sender defer: 14
+2024-10-21 07:27:26,347 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: poll_exit
+2024-10-21 07:27:26,347 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: poll_exit
+2024-10-21 07:27:26,348 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: server_info
+2024-10-21 07:27:26,348 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: poll_exit
+2024-10-21 07:27:26,348 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: server_info
+2024-10-21 07:27:26,350 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: get_summary
+2024-10-21 07:27:26,350 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: sampled_history
+2024-10-21 07:27:26,351 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: internal_messages
+2024-10-21 07:27:26,461 DEBUG   SenderThread:2669 [sender.py:send_request():406] send_request: poll_exit
+2024-10-21 07:27:26,462 INFO    MainThread:2669 [wandb_run.py:_footer_history_summary_info():4016] rendering history
+2024-10-21 07:27:26,462 INFO    MainThread:2669 [wandb_run.py:_footer_history_summary_info():4048] rendering summary
+2024-10-21 07:27:26,462 INFO    MainThread:2669 [wandb_run.py:_footer_sync_info():3975] logging synced files
+2024-10-21 07:27:26,462 DEBUG   HandlerThread:2669 [handler.py:handle_request():158] handle_request: shutdown
+2024-10-21 07:27:26,463 INFO    HandlerThread:2669 [handler.py:finish():882] shutting down handler
+2024-10-21 07:27:27,348 INFO    WriterThread:2669 [datastore.py:close():296] close: /home/disi/NLU-exam-main/LM/part_2/wandb/run-20241021_072705-u7gm7crj/run-u7gm7crj.wandb
+2024-10-21 07:27:27,462 INFO    SenderThread:2669 [sender.py:finish():1615] shutting down sender
+2024-10-21 07:27:27,462 INFO    SenderThread:2669 [file_pusher.py:finish():169] shutting down file pusher
+2024-10-21 07:27:27,462 INFO    SenderThread:2669 [file_pusher.py:join():175] waiting for file pusher
