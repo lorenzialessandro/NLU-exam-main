@@ -170,7 +170,7 @@ def init_weights(mat):
                     
                                       
 # Running the training and evaluation loops             
-def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5, device='cuda:0', hid_size=200, emb_size=300, optimizer_type='SGD', weight_tying=False, var_dropout=False):
+def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5, device='cuda:0', hid_size=300, emb_size=300, optimizer_type='SGD', weight_tying=False, var_dropout=False):
     '''Running function : preprocess, train and evaluate the model
     
     Args:
