@@ -14,7 +14,7 @@ import random
 import torch.optim as optim
 
 from utils import * # Import all the functions from the utils.py file
-from model import LM_RNN, LM_LSTM
+from model import LM_LSTM
 
 # Training loop
 def train_loop(data, optimizer, model, lang, criterion, clip=5):

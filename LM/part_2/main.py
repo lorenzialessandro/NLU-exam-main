@@ -64,6 +64,7 @@ def main():
     )
     
     # Lunch the run(s) with the parameters
+    print(weight_tying)
     run(train_raw, dev_raw, test_raw, lr=lr, runs=runs, epochs=epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, optimizer_type=optimizer, weight_tying=weight_tying, var_dropout=var_dropout)
 
 if __name__ == "__main__":
