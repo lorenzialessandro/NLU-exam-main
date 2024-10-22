@@ -147,8 +147,10 @@ def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5
         # Model selection
         if model_type == "RNN":
             model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(device)
+            model.apply(init_weights)
         elif model_type == "LSTM":
             model = LM_LSTM(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"], use_dropout=use_dropout).to(device)
+            model.apply(init_weights)
         else:
             print("Model not implemented")
             return

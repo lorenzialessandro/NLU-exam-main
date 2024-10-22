@@ -1,0 +1,9 @@
+  0%|                                                                                                                                                      | 0/1 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/disi/NLU-exam-main/LM/part_2/main.py", line 73, in <module>
+    main()
+  File "/home/disi/NLU-exam-main/LM/part_2/main.py", line 67, in main
+    run(train_raw, dev_raw, test_raw, lr=lr, runs=runs, epochs=epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, optimizer_type=optimizer, weight_tying=weight_tying, var_dropout=var_dropout)
+  File "/home/disi/NLU-exam-main/LM/part_2/functions.py", line 153, in run
+    optimizer = NTAvSGD(model, dev_loader, lang, criterion_eval, lr, L=epochs, n=5)
+NameError: name 'NTAvSGD' is not defined

@@ -26,9 +26,9 @@ class VarDropout(nn.Module):
         if not self.training or self.dropout == 0:
             return input_tensor
         
-        batch_size, _, feature_size = x.size() # get batch size, sequence length, feature size
+        batch_size, _, feature_size = input_tensor.size() # get batch size, sequence length, feature size
         
-        mask = torch.bernoulli(torch.full((batch_size, 1, feature_size), 1 - self.dropout, device=x.device)) # generate mask
+        mask = torch.bernoulli(torch.full((batch_size, 1, feature_size), 1 - self.dropout, device=input_tensor.device)) # generate mask
         
         scaled = input_tensor.mul(mask).div(1 - self.dropout) # apply mask and scale by (1 - dropout)
 

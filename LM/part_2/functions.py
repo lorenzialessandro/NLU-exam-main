@@ -145,7 +145,7 @@ def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5
     # start the runs
     for x in tqdm(range(0, runs)):  
         model = LM_LSTM(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"], weight_tying=weight_tying, var_dropout=var_dropout).to(device)
-              
+        model.apply(init_weights)
         # Optimizer selection
         if optimizer_type == "SGD":
             optimizer = optim.SGD(model.parameters(), lr=lr)
