@@ -1,0 +1,20 @@
+  0%|                                                                   | 0/1 [00:00<?, ?it/s]
+  0%|                                                                   | 0/1 [00:14<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/disi/NLU-exam-main/LM/part_2/main.py", line 73, in <module>
+    main()
+  File "/home/disi/NLU-exam-main/LM/part_2/main.py", line 67, in main
+    run(train_raw, dev_raw, test_raw, lr=lr, runs=runs, epochs=epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, optimizer_type=optimizer, weight_tying=weight_tying, var_dropout=var_dropout)
+  File "/home/disi/NLU-exam-main/LM/part_2/functions.py", line 255, in run
+    optimizer.average_parameters()
+  File "/home/disi/NLU-exam-main/LM/part_2/functions.py", line 87, in average_parameters
+    param.data = self.avg[param].clone() # Set the model parameters to the average
+KeyError: Parameter containing:
+tensor([[ 0.0055,  0.0026,  0.0090,  ...,  0.0019, -0.0032,  0.0035],
+        [ 0.0691, -0.1405, -0.0791,  ..., -0.1432, -0.1038, -0.0534],
+        [-0.0026,  0.0048,  0.0037,  ...,  0.0080, -0.0013, -0.0016],
+        ...,
+        [-0.0012,  0.0073,  0.0038,  ...,  0.0039,  0.0110, -0.0078],
+        [-0.0085, -0.0008, -0.0050,  ...,  0.0065,  0.0038,  0.0094],
+        [-0.0111,  0.0086,  0.0061,  ...,  0.0007,  0.0103,  0.0100]],
+       device='cuda:0', requires_grad=True)

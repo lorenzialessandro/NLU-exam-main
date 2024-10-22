@@ -32,6 +32,7 @@ class NTAvSGD(optim.SGD):
     def __init__(self, model, dev_loader, lang, stop_criterion, lr, L=200, n=5):
         super(NTAvSGD, self).__init__(model.parameters(), lr=lr)
         self.dev_loader = dev_loader
+        self.model = model
         self.lang = lang
         self.stop_criterion = stop_criterion
         self.lr = lr
@@ -72,18 +73,20 @@ class NTAvSGD(optim.SGD):
             
     def reset(self):
         '''Reset the parameters of the model to the average'''
-        with torch.no_grad():
-            for param in self.model.parameters():
-                param.data = self.avg[param].clone() # Reset the model parameters to the average
-        
+        if self.T > 0:
+            with torch.no_grad():
+                for param in self.model.parameters():
+                    param.data = self.tmp[param].clone() # Reset the model parameters
+                    
     def average_parameters(self):
         '''Average the parameters of the model'''
-        with torch.no_grad():
-            for param in self.model.parameters():
-                if param not in self.tmp:
+        if self.T > 0:
+            with torch.no_grad():
+                for param in self.model.parameters():
+                    #if param not in self.tmp:
                     self.tmp[param] = param.data.clone() # Initialize the temporary storage with the current parameters
                     param.data = self.avg[param].clone() # Set the model parameters to the average
-        
+            
 
 # Training loop
 def train_loop(data, optimizer, model, lang, criterion, clip=5):
