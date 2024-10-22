@@ -16,6 +16,75 @@ import torch.optim as optim
 from utils import * # Import all the functions from the utils.py file
 from model import LM_LSTM
 
+# Non-monotonically Triggered AvSGD (NT-AvSGD)
+class NTAvSGD(optim.SGD):
+    '''Non-monotonically Triggered AvSGD (NT-AvSGD) optimizer
+    
+    Args:
+        model: model to optimize
+        dev_loader: data loader for the validation set
+        lang: lang class with the vocabulary
+        stop_criterion: stopping criterion
+        lr: learning rate
+        L: logging interval
+        n: non-monotone interval
+    '''
+    def __init__(self, model, dev_loader, lang, stop_criterion, lr, L=200, n=5):
+        super(NTAvSGD, self).__init__(model.parameters(), lr=lr)
+        self.dev_loader = dev_loader
+        self.lang = lang
+        self.stop_criterion = stop_criterion
+        self.lr = lr
+        self.L = L
+        self.n = n
+        
+        self.k = 0 #
+        self.T = 0
+        self.t = 0
+        self.logs = []
+        self.tmp = {} # Temporary storage for the model parameters
+        self.avg = {} # Average of the model parameters
+        
+    def step(self, closure=None):
+        super(NTAvSGD, self).step(closure) # Compute stochastic gradient ∇ f(wk) and take SGD step (1)
+        
+        with torch.no_grad():
+            # Every L iterations, evaluate the model on the validation set
+            if self.k % self.L == 0 and self.T == 0:
+                v, _ = eval_loop(self.dev_loader, self.model, self.lang, self.stop_criterion) # Compute validation perplexity v
+                self.model.train() # Set the model to train mode after evaluation
+                
+                # Check the non-monotonic condition: if enough iterations have passed and the current loss is greater than the minimum loss in the last n iterations
+                if self.t > self.n and self.logs[-1] > min(self.logs[-self.n:]):
+                    self.T = self.k # Non-monotonic condition is met, set T = k
+                
+                self.logs.append(v) 
+                self.t += 1
+                
+        self.k += 1
+        
+        if self.T > 0:
+            for param in self.model.parameters():
+                if param not in self.tmp:
+                    self.avg[param] = param.data.clone() # Initialize the average with the current parameters
+                else:
+                    self.avg[param] = self.avg[param] + (param.data - self.avg[param]) / (self.k - self.T + 1) # Update the average
+            
+    def reset(self):
+        '''Reset the parameters of the model to the average'''
+        with torch.no_grad():
+            for param in self.model.parameters():
+                param.data = self.avg[param].clone() # Reset the model parameters to the average
+        
+    def average_parameters(self):
+        '''Average the parameters of the model'''
+        with torch.no_grad():
+            for param in self.model.parameters():
+                if param not in self.tmp:
+                    self.tmp[param] = param.data.clone() # Initialize the temporary storage with the current parameters
+                    param.data = self.avg[param].clone() # Set the model parameters to the average
+        
+
 # Training loop
 def train_loop(data, optimizer, model, lang, criterion, clip=5):
     '''Train loop for the model
