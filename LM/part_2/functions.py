@@ -250,14 +250,14 @@ def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5
                 pbar.set_description("PPL: %f" % ppl_dev)
 
                 # log metrics to wandb
-                wandb.log({'Loss/Train': np.asarray(loss).mean(), 'PPL/Dev': ppl_dev, 'epoch': epoch})
+                #wandb.log({'Loss/Train': np.asarray(loss).mean(), 'PPL/Dev': ppl_dev, 'epoch': epoch})
 
                 if use_nta: # Use NT-AvSGD
                     optimizer.average_parameters()
                     ppl_dev, loss_dev = eval_loop(dev_loader, model, lang, criterion_eval)
                     optimizer.reset()
                     # log metrics to wandb
-                    wandb.log({'PPL/Dev/NTA': ppl_dev, 'epoch': epoch})
+                    #wandb.log({'PPL/Dev/NTA': ppl_dev, 'epoch': epoch})
                     
                 if  ppl_dev < best_ppl: # the lower, the better
                     best_ppl = ppl_dev
@@ -287,12 +287,12 @@ def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5
             final_ppl_avg, _ = eval_loop(test_loader, best_model_avg, lang, criterion_eval)
             best_model_avg.to("cpu")
             print('Test ppl/NTA: ', final_ppl_avg)
-            wandb.log({'Final PPL/Test/NTA': final_ppl_avg})
+            #wandb.log({'Final PPL/Test/NTA': final_ppl_avg})
         
         ppls.append(final_ppl)
         
         #print('Test ppl: ', final_ppl)
-        wandb.log({'Final PPL/Test': final_ppl})
+        #.log({'Final PPL/Test': final_ppl})
          
         if final_ppl < best_ppl_runs:
             best_ppl_runs = final_ppl
@@ -306,7 +306,7 @@ def run(train_raw, dev_raw, test_raw, lr, runs=1, epochs=200, clip=5, patience=5
             
     ppls = np.asarray(ppls)
     
-    wandb.log({"PPL": round(ppls.mean(),3)})
+    #wandb.log({"PPL": round(ppls.mean(),3)})
     print('PPL', round(ppls.mean(),3), '+-', round(ppls.std(),3))
     
     # Save the model
