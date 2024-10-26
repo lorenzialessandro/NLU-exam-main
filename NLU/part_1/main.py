@@ -6,7 +6,6 @@ from utils import load_data
 import argparse
 
 # define parameters
-bert_model = 'bert-base-uncased'
 lr = 0.0001
 runs = 5
 n_epochs = 100
@@ -34,7 +33,7 @@ def main():
     test_raw = load_data(os.path.join('dataset','test.json'))
     
     # Lunch the run(s) with the parameters
-    run(tmp_train_raw, test_raw, bert_model=bert_model, lr=lr, runs=runs, n_epochs=n_epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, bidirectionality=bidirectionality, dropout_layer=dropout_layer)
+    run(tmp_train_raw, test_raw, lr=lr, runs=runs, n_epochs=n_epochs, clip=clip, patience=patience, device=device, hid_size=hid_size, emb_size=emb_size, bidirectionality=bidirectionality, dropout_layer=dropout_layer)
     
 
 if __name__ == "__main__":

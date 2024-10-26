@@ -9,7 +9,6 @@ import copy
 from tqdm import tqdm
 from conll import evaluate
 from sklearn.metrics import classification_report
-from transformers import BertTokenizer, BertTokenizerFast
 import matplotlib.pyplot as plt
 from copy import deepcopy
 import wandb
@@ -144,13 +143,12 @@ def init_weights(mat):
 
 
 # Running the training and evaluation loops  
-def run(tmp_train_raw, test_raw, bert_model, lr, runs=1, n_epochs=200, clip=5, patience=5, device='cuda:0', hid_size=200, emb_size=300, bidirectionality=False, dropout_layer=False):
+def run(tmp_train_raw, test_raw, lr, runs=1, n_epochs=200, clip=5, patience=5, device='cuda:0', hid_size=200, emb_size=300, bidirectionality=False, dropout_layer=False):
     '''Running function : preprocess, train and evaluate the model
 
     Args:
         tmp_train_raw: training data
         test_raw: test data
-        bert_model: bert model to use
         lr: learning rate
         runs: number of runs
         n_epochs: number of epochs
