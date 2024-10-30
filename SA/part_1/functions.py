@@ -329,6 +329,6 @@ def run(tmp_train_raw, test_raw, bert_model, lr, runs=1, n_epochs=200, clip=5, p
     # wandb.log({"F1 macro": f1_macro.mean(), "precision": precision.mean(), "recall": recall.mean(), "F1 micro": f1_micro.mean()})
 
     # Save the model
-    path = 'model_bin/ABSAmodel.pt'
-    torch.save(best_model.state_dict(), path)
+    # path = 'model_bin/ABSAmodel.pt'
+    # torch.save(best_model.state_dict(), path)
     

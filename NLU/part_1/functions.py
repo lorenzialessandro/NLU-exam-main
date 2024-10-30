@@ -248,5 +248,5 @@ def run(tmp_train_raw, test_raw, lr, runs=1, n_epochs=200, clip=5, patience=5, d
     print('Intent Acc', round(intent_acc.mean(), 3), '+-', round(slot_f1s.std(), 3))
     
     # Save the model
-    path = 'model_bin/ModelIAS.pt'
-    torch.save(best_model.state_dict(), path)
+    # path = 'model_bin/ModelIAS.pt'
+    # torch.save(best_model.state_dict(), path)
