@@ -4,7 +4,7 @@ This folder contains the work done to solve the **NLU task** (*part 2*), in part
 
 This part refer to fine-tune a pre-trained BERT model using a multitask learning setting on both the task. 
 
-Look at the report [NLU.pdf]() for more details. 
+Look at the report [NLU.pdf](../NLU.pdf) for more details. 
 
 ### Usage
 

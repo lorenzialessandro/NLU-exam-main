@@ -3,7 +3,7 @@ This folder contains the work done to solve the **LM task** *(part 1)*, in parti
 
 For this part the comparison is done, in terms of architecture, between the **RNN** and **LSTM** and, for optimizers, between **SGD** and **AdamW**. Regarding the regularization instead, **dropout** is part of the experiments. A lot of effort was also done in the hyperparameter (**learning rate**) optimization. 
 
-Look at the report [LM.pdf]() for more details. 
+Look at the report [LM.pdf](../LM.pdf) for more details. 
 
 ## Usage
 

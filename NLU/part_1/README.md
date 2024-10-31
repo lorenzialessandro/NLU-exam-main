@@ -4,7 +4,7 @@ This folder contains the work done to solve the **NLU task** (*part 1*), in part
 
 This part consists in modifying the baseline architecture based on LSTM, adding some regularization techniques. 
 
-Look at the report [NLU.pdf]() for more details. 
+Look at the report [NLU.pdf](../NLU.pdf) for more details. 
 
 ## Usage
 
