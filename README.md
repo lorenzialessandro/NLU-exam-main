@@ -30,5 +30,13 @@ Detailed reports for each task can be found in the corresponding folders, named 
 - [NLU.pdf](NLU/NLU.pdf) for Natural Language Understanding tasks
 - [SA.pdf](SA/SA.pdf) for Sentiment Analysis tasks
 
+## Setup
+Install Anaconda import the conda environment:
+
+```
+conda env create -f nlu_env.yaml -n nlu24
+conda activate nlu24
+```
+
 ## Author
 Alessandro Lorenzi - alessandro.lorenzi-1@studenti.unitn.it
