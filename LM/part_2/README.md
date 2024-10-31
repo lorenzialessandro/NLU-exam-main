@@ -21,23 +21,23 @@ Look at the report [LM.pdf](../LM.pdf) for more details.
 1. **LSTM with SGD optimizer, no weight tying, no variational dropout:**
 
    ```bash
-   python3 main.py LSTM SGD
+   python3 main.py SGD
    ```
 
 2. **LSTM with SGD optimizer, with weight tying, no variational dropout:**
 
    ```bash
-   python3 main.py LSTM SGD --weight_tying
+   python3 main.py SGD --weight_tying
    ```
 3. **LSTM with SGD optimizer, with weight tying and with variational dropout:**
 
    ```bash
-   python3 main.py LSTM SGD --weight_tying --var_dropout
+   python3 main.py SGD --weight_tying --var_dropout
    ```
 
 4. **LSTM with NTAvSGD optimizer, with weight tying and with variational dropout:**
 
    ```bash
-   python3 main.py LSTM NTAvSGD --weight_tying --var_dropout
+   python3 main.py NTAvSGD --weight_tying --var_dropout
    ```
 
